@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,24 +9,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello World</h1>
-	
-	<table>
-		<tr>
-			<td>ID</td>
-			<td>TITLE</td>
-			<td>CONTENT</td>
-			<td>WRITER</td>
-		</tr>
-		<c:forEach items="${list}" var="item">
-			<tr>
-				<td>${item.bId}</td>
-				<td>${item.bTitle}</td>
-				<td>${item.bContent}</td>
-				<td>${item.bWriter}</td>
-			</tr>
+	<h1>Home Page</h1>
+		<hr>
+		<div>
+			<sec:authorize access="isAnonymous()">
+				<a href="/login">로그인</a>
+				<a href="/beforeSignUp">회원가입</a>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<a href="/logout">로그아웃</a>
+				<sec:authorize property="principal" var="principal">
+					<h2>${principal}</h2>
+				</sec:authorize>
+			</sec:authorize>
+		</div>
 		
-		</c:forEach>
-	</table>
+		<div>
+			<sec:authorize access="isAuthenticated()">
+				<a href="/user/info">내 정보</a>
+				<a href="/admin">관리자</a>
+			</sec:authorize>
+		</div>
 </body>
 </html>
