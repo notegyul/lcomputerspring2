@@ -1,0 +1,46 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.lcomputerspring2'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	//implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.2'
+	
+	testImplementation ('org.springframework.boot:spring-boot-starter-test'){
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	//jsp 연동
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	//implementation 'org.springframework.boot:spring-boot-starter-tomcat:2.6.7'
+	//implementation 'javax.servlet.jsp.jstl:jstl-api:1.2'
+	//implementation 'jstl:jstl:1.2'
+	// https://mvnrepository.com/artifact/jstl/jstl
+	implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '2.0.0'
+	
+	
+	
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+test {
+	useJUnitPlatform()
+}
