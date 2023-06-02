@@ -11,7 +11,7 @@
 	<!-- 로그 파일로 남기는 과정 -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>C:\sts-logs\logback-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+			<fileNamePattern>./sts-logs/logback-%d{yyyy-MM-dd}.log.zip</fileNamePattern>
 			<maxhistory>7</maxhistory>
 		</rollingPolicy>
 		<encoder>
